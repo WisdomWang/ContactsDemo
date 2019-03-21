@@ -16,6 +16,13 @@
 		4AD59DCB2240D3110029B64E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59DCA2240D3110029B64E /* main.m */; };
 		4AD59DD52240D3120029B64E /* CAContactsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59DD42240D3120029B64E /* CAContactsTests.m */; };
 		4AD59DE02240D3120029B64E /* CAContactsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59DDF2240D3120029B64E /* CAContactsUITests.m */; };
+		4AD59DF52240D9990029B64E /* MyCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59DF42240D9990029B64E /* MyCoreDataManager.m */; };
+		4AE8957822437246001208E6 /* AddContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE8957722437246001208E6 /* AddContactsViewController.m */; };
+		4AE8957C224373A3001208E6 /* AddContactsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE8957B224373A3001208E6 /* AddContactsCell.m */; };
+		4AE8957F2243843C001208E6 /* ContactsEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59DEF2240D52C0029B64E /* ContactsEntity+CoreDataClass.m */; };
+		4AE8958022438441001208E6 /* ContactsEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59DF02240D52C0029B64E /* ContactsEntity+CoreDataProperties.m */; };
+		4AE8958322438DFF001208E6 /* ShowContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE8958222438DFF001208E6 /* ShowContactsViewController.m */; };
+		4AE89586224391CD001208E6 /* reviseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE89585224391CD001208E6 /* reviseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +60,21 @@
 		4AD59DDB2240D3120029B64E /* CAContactsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CAContactsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD59DDF2240D3120029B64E /* CAContactsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAContactsUITests.m; sourceTree = "<group>"; };
 		4AD59DE12240D3120029B64E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4AD59DED2240D52C0029B64E /* ContactsEntity+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ContactsEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		4AD59DEE2240D52C0029B64E /* ContactsEntity+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ContactsEntity+CoreDataClass.h"; sourceTree = "<group>"; };
+		4AD59DEF2240D52C0029B64E /* ContactsEntity+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ContactsEntity+CoreDataClass.m"; sourceTree = "<group>"; };
+		4AD59DF02240D52C0029B64E /* ContactsEntity+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ContactsEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4AD59DF32240D9990029B64E /* MyCoreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCoreDataManager.h; sourceTree = "<group>"; };
+		4AD59DF42240D9990029B64E /* MyCoreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCoreDataManager.m; sourceTree = "<group>"; };
+		4AE8957622437246001208E6 /* AddContactsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddContactsViewController.h; sourceTree = "<group>"; };
+		4AE8957722437246001208E6 /* AddContactsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddContactsViewController.m; sourceTree = "<group>"; };
+		4AE89579224372B2001208E6 /* TheHeaderFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheHeaderFile.h; sourceTree = "<group>"; };
+		4AE8957A224373A3001208E6 /* AddContactsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddContactsCell.h; sourceTree = "<group>"; };
+		4AE8957B224373A3001208E6 /* AddContactsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddContactsCell.m; sourceTree = "<group>"; };
+		4AE8958122438DFF001208E6 /* ShowContactsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowContactsViewController.h; sourceTree = "<group>"; };
+		4AE8958222438DFF001208E6 /* ShowContactsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowContactsViewController.m; sourceTree = "<group>"; };
+		4AE89584224391CD001208E6 /* reviseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reviseViewController.h; sourceTree = "<group>"; };
+		4AE89585224391CD001208E6 /* reviseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = reviseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +125,25 @@
 		4AD59DB72240D3100029B64E /* CAContacts */ = {
 			isa = PBXGroup;
 			children = (
+				4AE89579224372B2001208E6 /* TheHeaderFile.h */,
+				4AD59DEE2240D52C0029B64E /* ContactsEntity+CoreDataClass.h */,
+				4AD59DEF2240D52C0029B64E /* ContactsEntity+CoreDataClass.m */,
+				4AD59DED2240D52C0029B64E /* ContactsEntity+CoreDataProperties.h */,
+				4AD59DF02240D52C0029B64E /* ContactsEntity+CoreDataProperties.m */,
+				4AD59DF32240D9990029B64E /* MyCoreDataManager.h */,
+				4AD59DF42240D9990029B64E /* MyCoreDataManager.m */,
 				4AD59DB82240D3100029B64E /* AppDelegate.h */,
 				4AD59DB92240D3100029B64E /* AppDelegate.m */,
 				4AD59DBB2240D3100029B64E /* ViewController.h */,
 				4AD59DBC2240D3100029B64E /* ViewController.m */,
+				4AE8957A224373A3001208E6 /* AddContactsCell.h */,
+				4AE8957B224373A3001208E6 /* AddContactsCell.m */,
+				4AE8957622437246001208E6 /* AddContactsViewController.h */,
+				4AE8957722437246001208E6 /* AddContactsViewController.m */,
+				4AE8958122438DFF001208E6 /* ShowContactsViewController.h */,
+				4AE8958222438DFF001208E6 /* ShowContactsViewController.m */,
+				4AE89584224391CD001208E6 /* reviseViewController.h */,
+				4AE89585224391CD001208E6 /* reviseViewController.m */,
 				4AD59DBE2240D3100029B64E /* Main.storyboard */,
 				4AD59DC42240D3110029B64E /* Assets.xcassets */,
 				4AD59DC62240D3110029B64E /* LaunchScreen.storyboard */,
@@ -265,10 +302,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AE8958022438441001208E6 /* ContactsEntity+CoreDataProperties.m in Sources */,
+				4AE8957F2243843C001208E6 /* ContactsEntity+CoreDataClass.m in Sources */,
 				4AD59DBD2240D3100029B64E /* ViewController.m in Sources */,
 				4AD59DBA2240D3100029B64E /* AppDelegate.m in Sources */,
+				4AE89586224391CD001208E6 /* reviseViewController.m in Sources */,
 				4AD59DCB2240D3110029B64E /* main.m in Sources */,
+				4AE8957822437246001208E6 /* AddContactsViewController.m in Sources */,
+				4AE8958322438DFF001208E6 /* ShowContactsViewController.m in Sources */,
 				4AD59DC32240D3100029B64E /* CAContacts.xcdatamodeld in Sources */,
+				4AE8957C224373A3001208E6 /* AddContactsCell.m in Sources */,
+				4AD59DF52240D9990029B64E /* MyCoreDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
