@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContactsEntity+CoreDataProperties.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface reviseViewController : UIViewController
+
+@property (nonatomic,strong)ContactsEntity *c;
 
 @end
 

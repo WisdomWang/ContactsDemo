@@ -8,6 +8,7 @@
 
 #import "ShowContactsViewController.h"
 #import "TheHeaderFile.h"
+#import "reviseViewController.h"
 
 @interface ShowContactsViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate> {
     
@@ -71,7 +72,9 @@
 
 - (void)reviseClick {
     
-    
+    reviseViewController *vc = [[reviseViewController alloc]init];
+    vc.c = _c;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 /*
 #pragma mark - Navigation

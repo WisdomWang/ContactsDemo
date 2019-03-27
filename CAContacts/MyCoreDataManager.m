@@ -62,9 +62,4 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (void)save {
-    
-    [self.managerContext save:nil];
-}
-
 @end

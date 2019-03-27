@@ -103,11 +103,17 @@
     c.name = [_contactsDic valueForKey:@"姓名"];
     c.phone = [_contactsDic valueForKey:@"电话"];
     c.email = [_contactsDic valueForKey:@"邮箱"];
+    
+    NSError *error = nil;
+    
     if ([MyCoreDataManager shareInstace].managerContext.hasChanges) {
-        [[MyCoreDataManager shareInstace] save];
+        [[MyCoreDataManager shareInstace].managerContext save:&error];
         [self.navigationController popViewControllerAnimated:YES];
     }
     
+    if (error) {
+        NSLog(@"CoreData Insert Data Error : %@", error);
+    }
     
 }
 

@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSPersistentStoreCoordinator *managerDinator;
 
 + (MyCoreDataManager *)shareInstace;
-- (void) save;
 
 @end
 
