@@ -15,6 +15,8 @@
     
     NSArray *labelArr;
     NSMutableArray *detailLabelArr;
+    BOOL hadUpdate;
+    UIButton *rightButton;
 }
 
 @property (nonatomic,strong) UITableView *tableView;
@@ -27,14 +29,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     rightButton.frame = CGRectMake(0, 0, 30, 30);
     [rightButton setTitle:@"完成" forState:UIControlStateNormal];
     rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    [rightButton setTitleColor:[UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(reviseFinishClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = right;
+    hadUpdate = NO;
     
     labelArr = @[@"姓名",@"电话",@"邮箱"];
     detailLabelArr = [NSMutableArray arrayWithObjects:_c.name,_c.phone,_c.email, nil];
@@ -162,6 +165,12 @@
     }
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    [rightButton setTitleColor:[UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1] forState:UIControlStateNormal];
+    hadUpdate = YES;
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
     if (textField.tag == 1) {
@@ -181,31 +190,34 @@
 
 - (void)reviseFinishClick {
     
-    
-    [self.view endEditing:YES];
-    
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ContactsEntity"];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", _c.name];
-    request.predicate = predicate;
-    
-    NSError *error = nil;
-    NSArray<ContactsEntity *> *employees = [[MyCoreDataManager shareInstace].managerContext  executeFetchRequest:request error:&error];
-    [employees enumerateObjectsUsingBlock:^(ContactsEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    if (hadUpdate == YES) {
         
-        obj.name = self->detailLabelArr[0];
-        obj.phone = self->detailLabelArr[1];
-        obj.email = self->detailLabelArr[2];
-    }];
-    
-    if ([MyCoreDataManager shareInstace].managerContext.hasChanges) {
-        [[MyCoreDataManager shareInstace].managerContext save:&error];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.view endEditing:YES];
+        
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ContactsEntity"];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@", _c.name];
+        request.predicate = predicate;
+        
+        NSError *error = nil;
+        NSArray<ContactsEntity *> *employees = [[MyCoreDataManager shareInstace].managerContext  executeFetchRequest:request error:&error];
+        [employees enumerateObjectsUsingBlock:^(ContactsEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            obj.name = self->detailLabelArr[0];
+            obj.phone = self->detailLabelArr[1];
+            obj.email = self->detailLabelArr[2];
+        }];
+        
+        if ([MyCoreDataManager shareInstace].managerContext.hasChanges) {
+            [[MyCoreDataManager shareInstace].managerContext save:&error];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+        
+        if (error) {
+            NSLog(@"CoreData Update Data Error : %@", error);
+        }
     }
-    
-    if (error) {
-        NSLog(@"CoreData Update Data Error : %@", error);
-    }
+
 }
 
 /*

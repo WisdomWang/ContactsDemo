@@ -55,12 +55,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == 3) {
+    if (indexPath.row == 3 || indexPath.row == 4) {
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sendMsgCell"];
         if (!cell) {
@@ -68,8 +68,18 @@
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = @"发送信息";
-        cell.textLabel.textColor = [UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1];
+        
+       
+        
+        if (indexPath.row == 3) {
+            cell.textLabel.text = @"发送信息";
+            cell.textLabel.textColor = [UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1];
+        }
+        else if (indexPath.row == 4) {
+            cell.textLabel.text = @"FaceTime通话";
+            cell.accessoryType = UITableViewCellAccessoryDetailButton;
+            
+        }
         
         return cell;
         
@@ -116,6 +126,12 @@
     else if (indexPath.row == 3) {
         
         NSString *callPhone = [NSString stringWithFormat:@"sms:%@", _c.phone];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+    }
+    else if (indexPath.row == 4) {
+        
+        NSString *callPhone = [NSString stringWithFormat:@"facetime:%@", _c.phone];
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
     }
