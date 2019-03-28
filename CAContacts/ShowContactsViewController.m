@@ -30,7 +30,7 @@
     rightButton.frame = CGRectMake(0, 0, 30, 30);
     [rightButton setTitle:@"编辑" forState:UIControlStateNormal];
     rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(reviseClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = right;
@@ -52,22 +52,70 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"showContactCell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"showContactCell"];
+    if (indexPath.row == 3) {
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sendMsgCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"sendMsgCell"];
+        }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = @"发送信息";
+        cell.textLabel.textColor = [UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1];
+        
+        return cell;
+        
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    else {
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"showContactCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"showContactCell"];
+        }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.textLabel.text = labelArr[indexPath.row];
+        cell.detailTextLabel.text = detailLabelArr[indexPath.row];
+        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:19];
+        
+        if (indexPath.row == 1 || indexPath.row == 2) {
+            cell.detailTextLabel.textColor = [UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1];
+        }
+        
+        return cell;
+    }
     
-    cell.textLabel.text = labelArr[indexPath.row];
-    cell.detailTextLabel.text = detailLabelArr[indexPath.row];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return cell;
+    if (indexPath.row == 1) {
+        
+        NSString *callPhone = [NSString stringWithFormat:@"tel:%@", _c.name];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+    }
+    
+    else if (indexPath.row == 2) {
+        
+        NSString *callPhone = [NSString stringWithFormat:@"mailto:%@", _c.email];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+    }
+    else if (indexPath.row == 3) {
+        
+        NSString *callPhone = [NSString stringWithFormat:@"sms:%@", _c.phone];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
+    }
 }
 
 - (void)reviseClick {

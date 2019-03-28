@@ -31,7 +31,7 @@
     rightButton.frame = CGRectMake(0, 0, 30, 30);
     [rightButton setTitle:@"完成" forState:UIControlStateNormal];
     rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(reviseFinishClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = right;
@@ -92,6 +92,11 @@
         cell.detailText.tag = indexPath.row + 1;
         cell.labelText.text = labelArr[indexPath.row];
         cell.detailText.text = detailLabelArr[indexPath.row];
+        cell.detailText.placeholder = labelArr[indexPath.row];
+        
+        if (indexPath.row == 1 || indexPath.row == 2) {
+            cell.detailText.textColor = [UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1];
+        }
         
         return cell;
     }
@@ -105,6 +110,8 @@
         
         cell.textLabel.text = @"删除联系人";
         cell.textLabel.textColor = [UIColor redColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         return cell;
     }
    
@@ -147,7 +154,9 @@
         [alert addAction:cancel];
         [alert addAction:delete];
         
-        [self presentViewController:alert animated:YES completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:alert animated:YES completion:nil];
+        });
         
       
     }
@@ -171,6 +180,9 @@
 
 
 - (void)reviseFinishClick {
+    
+    
+    [self.view endEditing:YES];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ContactsEntity"];
     
