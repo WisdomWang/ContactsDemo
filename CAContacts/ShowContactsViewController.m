@@ -35,6 +35,9 @@
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = right;
     
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backItem;
+    
     labelArr = @[@"姓名",@"电话",@"邮箱"];
     detailLabelArr = @[_c.name,_c.phone,_c.email];
 
