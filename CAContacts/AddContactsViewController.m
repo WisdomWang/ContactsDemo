@@ -11,6 +11,7 @@
 #import "AddContactsCell.h"
 #import "MyCoreDataManager.h"
 #import "ContactsEntity+CoreDataProperties.h"
+#import "CommonTool.h"
 
 @interface AddContactsViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate> {
     
@@ -101,8 +102,10 @@
     
     ContactsEntity *c = [NSEntityDescription insertNewObjectForEntityForName:@"ContactsEntity" inManagedObjectContext:[MyCoreDataManager shareInstace].managerContext];
     c.name = [_contactsDic valueForKey:@"姓名"];
+    c.namepinyin = [CommonTool getPinYinFromString:[_contactsDic valueForKey:@"姓名"]];
     c.phone = [_contactsDic valueForKey:@"电话"];
     c.email = [_contactsDic valueForKey:@"邮箱"];
+    c.sectionName = [[c.namepinyin substringFromIndex:0] uppercaseString];
     
     NSError *error = nil;
     

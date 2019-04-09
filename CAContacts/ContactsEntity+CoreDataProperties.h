@@ -17,8 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<ContactsEntity *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *name;
+@property (nullable, nonatomic, copy) NSString *namepinyin;
 @property (nullable, nonatomic, copy) NSString *phone;
 @property (nullable, nonatomic, copy) NSString *email;
+@property (nullable, nonatomic, copy) NSString *sectionName;
 
 @end
 

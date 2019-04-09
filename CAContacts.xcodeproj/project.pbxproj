@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A63666D225C77F700D20647 /* CommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A63666C225C77F700D20647 /* CommonTool.m */; };
 		4A91A58C224B736400B5AA55 /* reviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A91A58B224B736400B5AA55 /* reviseCell.m */; };
 		4AD59DBA2240D3100029B64E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59DB92240D3100029B64E /* AppDelegate.m */; };
 		4AD59DBD2240D3100029B64E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD59DBC2240D3100029B64E /* ViewController.m */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A63666B225C77F700D20647 /* CommonTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonTool.h; sourceTree = "<group>"; };
+		4A63666C225C77F700D20647 /* CommonTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonTool.m; sourceTree = "<group>"; };
 		4A91A58A224B736400B5AA55 /* reviseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reviseCell.h; sourceTree = "<group>"; };
 		4A91A58B224B736400B5AA55 /* reviseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = reviseCell.m; sourceTree = "<group>"; };
 		4AD59DB52240D3100029B64E /* CAContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				4AE89579224372B2001208E6 /* TheHeaderFile.h */,
+				4A63666B225C77F700D20647 /* CommonTool.h */,
+				4A63666C225C77F700D20647 /* CommonTool.m */,
 				4AD59DEE2240D52C0029B64E /* ContactsEntity+CoreDataClass.h */,
 				4AD59DEF2240D52C0029B64E /* ContactsEntity+CoreDataClass.m */,
 				4AD59DED2240D52C0029B64E /* ContactsEntity+CoreDataProperties.h */,
@@ -310,6 +315,7 @@
 				4AE8958022438441001208E6 /* ContactsEntity+CoreDataProperties.m in Sources */,
 				4AE8957F2243843C001208E6 /* ContactsEntity+CoreDataClass.m in Sources */,
 				4AD59DBD2240D3100029B64E /* ViewController.m in Sources */,
+				4A63666D225C77F700D20647 /* CommonTool.m in Sources */,
 				4AD59DBA2240D3100029B64E /* AppDelegate.m in Sources */,
 				4AE89586224391CD001208E6 /* reviseViewController.m in Sources */,
 				4A91A58C224B736400B5AA55 /* reviseCell.m in Sources */,

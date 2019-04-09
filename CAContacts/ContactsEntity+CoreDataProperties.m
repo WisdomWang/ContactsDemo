@@ -16,7 +16,9 @@
 }
 
 @dynamic name;
+@dynamic namepinyin;
 @dynamic phone;
 @dynamic email;
+@dynamic sectionName;
 
 @end

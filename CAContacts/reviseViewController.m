@@ -10,6 +10,7 @@
 #import "TheHeaderFile.h"
 #import "reviseCell.h"
 #import "MyCoreDataManager.h"
+#import "CommonTool.h"
 
 @interface reviseViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate> {
     
@@ -204,8 +205,10 @@
         [employees enumerateObjectsUsingBlock:^(ContactsEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             obj.name = self->detailLabelArr[0];
+            obj.namepinyin = [CommonTool getPinYinFromString:self->detailLabelArr[0]];
             obj.phone = self->detailLabelArr[1];
             obj.email = self->detailLabelArr[2];
+            obj.sectionName = [[obj.namepinyin substringFromIndex:0] uppercaseString];
         }];
         
         if ([MyCoreDataManager shareInstace].managerContext.hasChanges) {
