@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  汉语转拼音
  */
 + (NSString *)getPinYinFromString:(NSString *)string;
++(BOOL)JudgeString:(NSString *)string;
 
 @end
 

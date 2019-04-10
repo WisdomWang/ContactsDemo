@@ -131,29 +131,10 @@
 		4AD59DB72240D3100029B64E /* CAContacts */ = {
 			isa = PBXGroup;
 			children = (
-				4AE89579224372B2001208E6 /* TheHeaderFile.h */,
-				4A63666B225C77F700D20647 /* CommonTool.h */,
-				4A63666C225C77F700D20647 /* CommonTool.m */,
-				4AD59DEE2240D52C0029B64E /* ContactsEntity+CoreDataClass.h */,
-				4AD59DEF2240D52C0029B64E /* ContactsEntity+CoreDataClass.m */,
-				4AD59DED2240D52C0029B64E /* ContactsEntity+CoreDataProperties.h */,
-				4AD59DF02240D52C0029B64E /* ContactsEntity+CoreDataProperties.m */,
-				4AD59DF32240D9990029B64E /* MyCoreDataManager.h */,
-				4AD59DF42240D9990029B64E /* MyCoreDataManager.m */,
-				4AD59DB82240D3100029B64E /* AppDelegate.h */,
-				4AD59DB92240D3100029B64E /* AppDelegate.m */,
-				4AD59DBB2240D3100029B64E /* ViewController.h */,
-				4AD59DBC2240D3100029B64E /* ViewController.m */,
-				4AE8957A224373A3001208E6 /* AddContactsCell.h */,
-				4AE8957B224373A3001208E6 /* AddContactsCell.m */,
-				4AE8957622437246001208E6 /* AddContactsViewController.h */,
-				4AE8957722437246001208E6 /* AddContactsViewController.m */,
-				4AE8958122438DFF001208E6 /* ShowContactsViewController.h */,
-				4AE8958222438DFF001208E6 /* ShowContactsViewController.m */,
-				4A91A58A224B736400B5AA55 /* reviseCell.h */,
-				4A91A58B224B736400B5AA55 /* reviseCell.m */,
-				4AE89584224391CD001208E6 /* reviseViewController.h */,
-				4AE89585224391CD001208E6 /* reviseViewController.m */,
+				4ADDEE37225DE6B600AADC70 /* Other */,
+				4ADDEE36225DE6A100AADC70 /* Model */,
+				4ADDEE35225DE65900AADC70 /* View */,
+				4ADDEE34225DE62C00AADC70 /* Controller */,
 				4AD59DBE2240D3100029B64E /* Main.storyboard */,
 				4AD59DC42240D3110029B64E /* Assets.xcassets */,
 				4AD59DC62240D3110029B64E /* LaunchScreen.storyboard */,
@@ -180,6 +161,57 @@
 				4AD59DE12240D3120029B64E /* Info.plist */,
 			);
 			path = CAContactsUITests;
+			sourceTree = "<group>";
+		};
+		4ADDEE34225DE62C00AADC70 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4AD59DBB2240D3100029B64E /* ViewController.h */,
+				4AD59DBC2240D3100029B64E /* ViewController.m */,
+				4AE8957622437246001208E6 /* AddContactsViewController.h */,
+				4AE8957722437246001208E6 /* AddContactsViewController.m */,
+				4AE8958122438DFF001208E6 /* ShowContactsViewController.h */,
+				4AE8958222438DFF001208E6 /* ShowContactsViewController.m */,
+				4AE89584224391CD001208E6 /* reviseViewController.h */,
+				4AE89585224391CD001208E6 /* reviseViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4ADDEE35225DE65900AADC70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4AE8957A224373A3001208E6 /* AddContactsCell.h */,
+				4AE8957B224373A3001208E6 /* AddContactsCell.m */,
+				4A91A58A224B736400B5AA55 /* reviseCell.h */,
+				4A91A58B224B736400B5AA55 /* reviseCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4ADDEE36225DE6A100AADC70 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4AD59DEE2240D52C0029B64E /* ContactsEntity+CoreDataClass.h */,
+				4AD59DEF2240D52C0029B64E /* ContactsEntity+CoreDataClass.m */,
+				4AD59DED2240D52C0029B64E /* ContactsEntity+CoreDataProperties.h */,
+				4AD59DF02240D52C0029B64E /* ContactsEntity+CoreDataProperties.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4ADDEE37225DE6B600AADC70 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				4AE89579224372B2001208E6 /* TheHeaderFile.h */,
+				4A63666B225C77F700D20647 /* CommonTool.h */,
+				4A63666C225C77F700D20647 /* CommonTool.m */,
+				4AD59DF32240D9990029B64E /* MyCoreDataManager.h */,
+				4AD59DF42240D9990029B64E /* MyCoreDataManager.m */,
+				4AD59DB82240D3100029B64E /* AppDelegate.h */,
+				4AD59DB92240D3100029B64E /* AppDelegate.m */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

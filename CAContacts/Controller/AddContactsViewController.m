@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.navigationItem.title = @"新建联系人";
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     rightButton.frame = CGRectMake(0, 0, 30, 30);
@@ -40,6 +41,7 @@
     
     rowArray = @[@"姓名",@"电话",@"邮箱"];
     _contactsDic = [[NSMutableDictionary alloc]init];
+    
     [self createUI];
 }
 
@@ -68,6 +70,9 @@
     cell.detailText.delegate = self;
     cell.detailText.tag = indexPath.row + 1;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.row == 1) {
+        cell.detailText.keyboardType = UIKeyboardTypePhonePad;
+    }
     
     return cell;
 }
@@ -90,8 +95,6 @@
 
 - (void)FinishClick {
     
-    
-    
     [self.view endEditing:YES];
     
     if (xNullString([_contactsDic valueForKey:@"姓名"])) {
@@ -99,13 +102,19 @@
         return;
     }
     
-    
     ContactsEntity *c = [NSEntityDescription insertNewObjectForEntityForName:@"ContactsEntity" inManagedObjectContext:[MyCoreDataManager shareInstace].managerContext];
     c.name = [_contactsDic valueForKey:@"姓名"];
     c.namepinyin = [CommonTool getPinYinFromString:[_contactsDic valueForKey:@"姓名"]];
     c.phone = [_contactsDic valueForKey:@"电话"];
     c.email = [_contactsDic valueForKey:@"邮箱"];
-    c.sectionName = [[c.namepinyin substringFromIndex:0] uppercaseString];
+    NSLog(@"%@",c.namepinyin);
+    
+    if ([CommonTool JudgeString:c.namepinyin] == YES) {
+        c.sectionName = [[c.namepinyin substringToIndex:1] uppercaseString];
+    } else {
+        c.sectionName = @"#";
+    }
+    
     
     NSError *error = nil;
     

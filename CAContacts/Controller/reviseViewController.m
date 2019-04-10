@@ -102,6 +102,10 @@
             cell.detailText.textColor = [UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1];
         }
         
+        if (indexPath.row == 1) {
+            cell.detailText.keyboardType = UIKeyboardTypePhonePad;
+        }
+        
         return cell;
     }
     

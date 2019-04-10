@@ -41,4 +41,13 @@
     return [NSString stringWithFormat:@"%@",aCstring];
 }
 
++(BOOL)JudgeString:(NSString *)string {
+    
+    NSString *regex = @"^[A-Za-z].+$";
+    
+    NSPredicate*predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    
+    return  [predicate evaluateWithObject:string];
+}
+
 @end

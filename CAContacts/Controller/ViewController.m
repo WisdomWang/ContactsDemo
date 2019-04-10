@@ -17,7 +17,6 @@
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource,NSFetchedResultsControllerDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) NSMutableArray *contactsArray;
 @property (nonatomic,strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
@@ -34,30 +33,7 @@
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = right;
     
-    _contactsArray = [[NSMutableArray alloc]init];
-    
-    
     [self createUI];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
-    
-//    if (self.contactsArray.count > 0) {
-//        [self.contactsArray removeAllObjects];
-//    }
-//
-//    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"ContactsEntity"];
-//    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"namepinyin" ascending:YES]];
-//    NSArray <ContactsEntity *> *arr = [[MyCoreDataManager shareInstace].managerContext executeFetchRequest:request error:nil];
-//    [arr enumerateObjectsUsingBlock:^(ContactsEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        [self.contactsArray addObject:obj];
-//    }];
-//
-//    [self.tableView reloadData];
-    
 }
 
 -(NSFetchedResultsController *)fetchedResultsController
@@ -65,21 +41,21 @@
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
-    
+
     ///创建请求
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"ContactsEntity"];
     ///设置请求排序器
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sectionName" ascending:YES]];
-    
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"namepinyin" ascending:YES]];
+
     _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[MyCoreDataManager shareInstace].managerContext sectionNameKeyPath:@"sectionName" cacheName:nil];
-    
+
     _fetchedResultsController.delegate = self;
-    
+
     ///执行查询
     [_fetchedResultsController performFetch:nil];
-    
+
     [self.tableView reloadData];
-    
+
     return _fetchedResultsController;
 }
 
@@ -92,36 +68,8 @@
     [self.view addSubview:_tableView];
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//
-//    return _contactsArray.count;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contactCell"];
-//    if (!cell) {
-//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"contactCell"];
-//    }
-//
-//    ContactsEntity *c = _contactsArray[indexPath.row];
-//
-//    cell.textLabel.text = c.name;
-//
-//    return cell;
-//}
+-(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//
-//    ContactsEntity *c = _contactsArray[indexPath.row];
-//    ShowContactsViewController *vc = [[ShowContactsViewController alloc]init];
-//    vc.c = c;
-//    [self.navigationController pushViewController:vc animated:YES];
-//
-//}
-
-//-(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-//
 //    NSMutableArray *toBeReturned = [[NSMutableArray alloc]init];
 //
 //    for(char c = 'A'; c <= 'Z'; c++ ) {
@@ -130,11 +78,12 @@
 //
 //    }
 //    return toBeReturned;
-//}
+    
+    return self.fetchedResultsController.sectionIndexTitles;
+}
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 
-   // return self.fetchedResultsController.sectionIndexTitles[section];
     return [self.fetchedResultsController.sections objectAtIndex:section].indexTitle;
 }
 
@@ -174,57 +123,82 @@
     
 }
 
-#pragma mark -NSFetchedResultsControllerDelegate
+#pragma mark - 实现 NSFetchResultsControllerDelegate 的方法
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(nullable NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(nullable NSIndexPath *)newIndexPath
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    ///获取当前tableView组的数量
-    NSInteger sectionNum = self.tableView.numberOfSections;
+    //tableView开始更新
+    [self.tableView beginUpdates];
+}
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
     
-    //获取NSFetchedResultsController组的数量,如果和tableView组的数量不相等，就表示有新的数据插入
-    NSInteger fetchSection = self.fetchedResultsController.sections.count;
-    
-    switch (type) {
+    switch(type) {
+            //如果是加入了新的组
         case NSFetchedResultsChangeInsert:
-            
-            //插入数据
-            [self.tableView beginUpdates];
-            if (sectionNum != fetchSection) {
-                [self.tableView insertSections:[NSIndexSet indexSetWithIndex:newIndexPath.section] withRowAnimation:UITableViewRowAnimationMiddle];
-            }else{
-                [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationMiddle];
-            }
-            [self.tableView reloadData];
-            ///tableView有开始更新，就有结束更新
-            ///不能没有结束更新
-            [self.tableView endUpdates];
+            //tableView插入新的组
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
             break;
             
+            //如果是删除了组
         case NSFetchedResultsChangeDelete:
-            [self.tableView beginUpdates];
-            if (sectionNum != fetchSection) {
-                [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationMiddle];
-            }else{
-                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
-            }
-            [self.tableView endUpdates];
+            //tableView删除新的组
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
             break;
-            
         case NSFetchedResultsChangeMove:
-            [self.tableView reloadData];
-            break;
             
+            break;
         case NSFetchedResultsChangeUpdate:
-            //刷新数据
-            [self.tableView beginUpdates];
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
-            [self.tableView endUpdates];
-            break;
             
-        default:
             break;
     }
 }
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+            //如果是组中加入新的对象
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            //如果是组中删除了对象
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            //如果是组中的对象发生了变化
+        case NSFetchedResultsChangeUpdate:
+            //**********我们需要修改的地方**********
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            //如果是组中的对象位置发生了变化
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    //用自己算好的最有算法，进行排列更新
+    [self.tableView endUpdates];
+}
+
 
 - (void)addContacts {
     

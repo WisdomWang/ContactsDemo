@@ -39,6 +39,15 @@
     self.navigationItem.backBarButtonItem = backItem;
     
     labelArr = @[@"姓名",@"电话",@"邮箱"];
+    if (!_c.name) {
+        _c.name = @"";
+    }
+    if (!_c.phone) {
+        _c.phone = @"";
+    }
+    if (!_c.email) {
+        _c.email = @"";
+    }
     detailLabelArr = @[_c.name,_c.phone,_c.email];
 
     [self createUI];
