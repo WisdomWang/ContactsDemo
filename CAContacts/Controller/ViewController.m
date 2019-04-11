@@ -45,8 +45,8 @@
     ///创建请求
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"ContactsEntity"];
     ///设置请求排序器
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"namepinyin" ascending:YES]];
-
+   // request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"namepinyin" ascending:YES]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sectionName" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"namepinyin" ascending:YES]];
     _fetchedResultsController = [[NSFetchedResultsController alloc]initWithFetchRequest:request managedObjectContext:[MyCoreDataManager shareInstace].managerContext sectionNameKeyPath:@"sectionName" cacheName:nil];
 
     _fetchedResultsController.delegate = self;
