@@ -54,7 +54,7 @@
      
      //搜索时背景不暗淡
      self.searchController.dimsBackgroundDuringPresentation = NO;
-   //  self.searchController.hidesNavigationBarDuringPresentation = NO;
+     self.searchController.hidesNavigationBarDuringPresentation = NO;
      self.searchController.obscuresBackgroundDuringPresentation = NO;
      
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, xScreenWidth, xScreenHeight) style:UITableViewStylePlain];
@@ -64,7 +64,6 @@
     _tableView.tableHeaderView = self.searchController.searchBar;;
     [self.view addSubview:_tableView];
 }
-
 
 -(void)loadMyFetchResultsController {
     
@@ -138,7 +137,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    NSLog(@"%lu",(unsigned long)self.fetchedResultsController.sections.count);
     return  self.fetchedResultsController.sections.count;
 }
 
