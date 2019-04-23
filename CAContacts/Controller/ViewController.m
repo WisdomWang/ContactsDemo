@@ -250,7 +250,8 @@
 - (void)addContacts {
     
     AddContactsViewController *vc = [[AddContactsViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+   // [self.navigationController pushViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 @end

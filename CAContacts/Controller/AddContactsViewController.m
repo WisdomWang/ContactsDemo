@@ -16,6 +16,7 @@
 @interface AddContactsViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate> {
     
     NSArray *rowArray;
+    UIButton *rightButton;
 }
 
 @property (nonatomic,strong) UITableView *tableView;
@@ -29,16 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationItem.title = @"新建联系人";
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightButton.frame = CGRectMake(0, 0, 30, 30);
-    [rightButton setTitle:@"完成" forState:UIControlStateNormal];
-    rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    [rightButton setTitleColor:[UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(FinishClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem = right;
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     rowArray = @[@"姓名",@"电话",@"邮箱"];
     _contactsDic = [[NSMutableDictionary alloc]init];
     
@@ -47,7 +39,34 @@
 
 - (void)createUI {
     
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, xScreenWidth, xScreenHeight) style:UITableViewStylePlain];
+    
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftButton.frame = CGRectMake(20, xStatusBarHeight, 40, 40);
+    [leftButton setTitle:@"取消" forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    [leftButton setTitleColor:[UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(popClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:leftButton];
+    
+    UILabel *label = [[UILabel alloc]init];
+    label.frame = CGRectMake(80, xStatusBarHeight, xScreenWidth-160, 40);
+    label.text = @"新建联系人";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont boldSystemFontOfSize:17];
+    [self.view addSubview:label];
+    
+    rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightButton.frame = CGRectMake(xScreenWidth-60, xStatusBarHeight, 40, 40);
+    [rightButton setTitle:@"完成" forState:UIControlStateNormal];
+    rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    [rightButton setTitleColor:[UIColor colorWithRed:45/255.0 green:120/255.0 blue:250/255.0 alpha:1] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(FinishClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:rightButton];
+    
+    
+    
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, xTopHeight, xScreenWidth, xScreenHeight) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
@@ -91,6 +110,11 @@
         
         [_contactsDic setValue:textField.text forKey:@"邮箱"];
     }
+}
+
+- (void)popClick {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)FinishClick {
