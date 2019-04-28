@@ -121,6 +121,10 @@
     
     if (indexPath.row == 1) {
         
+        if ([_c.phone isEqualToString:@""]) {
+            return;
+        }
+        
         NSString *callPhone = [NSString stringWithFormat:@"tel:%@", _c.name];
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
@@ -128,17 +132,29 @@
     
     else if (indexPath.row == 2) {
         
+        if ([_c.email isEqualToString:@""]) {
+            return;
+        }
+        
         NSString *callPhone = [NSString stringWithFormat:@"mailto:%@", _c.email];
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
     }
     else if (indexPath.row == 3) {
         
+        if ([_c.phone isEqualToString:@""]) {
+            return;
+        }
+        
         NSString *callPhone = [NSString stringWithFormat:@"sms:%@", _c.phone];
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone] options:@{} completionHandler:nil];
     }
     else if (indexPath.row == 4) {
+        
+        if ([_c.phone isEqualToString:@""]) {
+            return;
+        }
         
         NSString *callPhone = [NSString stringWithFormat:@"facetime:%@", _c.phone];
         
