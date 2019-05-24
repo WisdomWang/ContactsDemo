@@ -144,7 +144,7 @@
     
     if ([MyCoreDataManager shareInstace].managerContext.hasChanges) {
         [[MyCoreDataManager shareInstace].managerContext save:&error];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     
     if (error) {
